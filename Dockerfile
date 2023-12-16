@@ -9,5 +9,8 @@ RUN echo "listen-address 0.0.0.0:8118" >> /etc/privoxy/config && \
     echo "forward-socks5t / 127.0.0.1:9050 ." >> /etc/privoxy/config
 
 COPY supervisord.conf /etc/supervisord.conf
+COPY entrypoint.sh /opt/entrypoint.sh
+
+ENTRYPOINT ["/opt/entrypoint.sh"]
 
 CMD ["supervisord", "-c", "/etc/supervisord.conf"]
